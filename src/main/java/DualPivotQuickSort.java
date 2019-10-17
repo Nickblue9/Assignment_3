@@ -16,12 +16,12 @@ public class DualPivotQuickSort {
     private void quickSort(int[] A, int left, int right){
         int temp;
         if(right-left>=1){
-            int p = A[left];
-            int q = A[right];
-            if(p>q){
-                temp = p;
-                p = q;
-                q = temp;
+            int lp = A[left];
+            int rp = A[right];
+            if(lp>rp){
+                temp = lp;
+                lp = rp;
+                rp = temp;
 
                 temp = A[left];
                 A[left] = A[right];
@@ -31,21 +31,21 @@ public class DualPivotQuickSort {
             int g = right-1;
             int k = l;
             while(k<=g){
-                if(A[k]<p){
+                if(A[k]<lp){
                    temp = A[k];
                    A[k] = A[l];
                    A[l] = temp;
                     l++;
                 }
                 else{
-                    if(A[k]>q){
-                        while(A[g]>q && k<g)
+                    if(A[k]>rp){
+                        while(A[g]>lp && k<g)
                             g--;
                         temp = A[k];
                         A[k]= A[g];
                         A[g] = temp;
                         g--;
-                        if(A[k]<p){
+                        if(A[k]<lp){
                             temp = A[k];
                             A[k] = A[l];
                             A[l] = temp;
@@ -75,7 +75,7 @@ public class DualPivotQuickSort {
 
     private int[] getValues(File f) throws IOException{
         Scanner fScanner = new Scanner(f);
-        ArrayList<Integer> arr = new ArrayList<Integer>();
+        ArrayList<Integer> arr = new ArrayList<>();
         while (fScanner.hasNextInt()) {
             arr.add(fScanner.nextInt());
         }
