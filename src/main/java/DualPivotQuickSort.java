@@ -14,64 +14,30 @@ public class DualPivotQuickSort {
         }catch(IOException e){e.printStackTrace();}
     }
     private void quickSort(int[] A, int left, int right){
-        int temp;
-        if(right-left>=1){
-            int lp = A[left];
-            int rp = A[right];
-            if(lp>rp){
-                temp = lp;
-                lp = rp;
-                rp = temp;
-
-                temp = A[left];
-                A[left] = A[right];
-                A[right] = temp;
-            }
-            int l = left+1;
-            int g = right-1;
-            int k = l;
-            while(k<=g){
-                if(A[k]<lp){
-                   temp = A[k];
-                   A[k] = A[l];
-                   A[l] = temp;
-                    l++;
-                }
-                else{
-                    if(A[k]>rp){
-                        while(A[g]>lp && k<g)
-                            g--;
-                        temp = A[k];
-                        A[k]= A[g];
-                        A[g] = temp;
-                        g--;
-                        if(A[k]<lp){
-                            temp = A[k];
-                            A[k] = A[l];
-                            A[l] = temp;
-                            l++;
-                        }
-
-                    }
-                }
-                k++;
-            }
-            l--;
-            g++;
-            temp = A[left];
-            A[left] = A[l];
-            A[l] = temp;
-
-            temp = A[right];
-            A[right] = A[g];
-            A[g] = temp;
-            quickSort(A,left,l-1);
-            quickSort(A,l+1,g-1);
-            quickSort(A,g+1,right);
+        if(right<=left)
+            return;
+        int lp = left, rp = right;
+        int v = A[left];
+        int i = left +1;
+        while(i<=rp){
+            if(v<A[i])
+                swap(A,lp++,i++);
+            else if (v>A[i])
+                swap(A,i,rp--);
+            else
+                i++;
         }
+        quickSort(A,left,lp-1);
+        quickSort(A,rp+1,right);
 
     }
 
+
+    private static void swap(int[] A, int i, int j){
+        int temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
+    }
 
     private int[] getValues(File f) throws IOException{
         Scanner fScanner = new Scanner(f);
