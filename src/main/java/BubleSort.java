@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class BubbleSort {
+class BubleSort {
 
     private void BubbleSort(int[] A) {
         int BOUND = A.length;
@@ -11,7 +11,6 @@ class BubbleSort {
             for (int j = 0; j < BOUND-i-1; j++)
                 if (A[j] > A[j+1])
                 {
-                    // swap arr[j+1] and arr[i]
                     int temp = A[j];
                     A[j] = A[j+1];
                     A[j+1] = temp;
@@ -19,7 +18,7 @@ class BubbleSort {
     }
 
     public static void main (String [] args){
-        BubbleSort sort = new BubbleSort();
+        BubleSort sort = new BubleSort();
 
         try {
             File f = new File(args[0]);
